@@ -1,3 +1,5 @@
+# Written: 01/31/2015
+
 from fractions import Fraction
 from numbers import Number
 
