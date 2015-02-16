@@ -182,7 +182,7 @@ class Matrix():
         for col in range(A.n): # For every column
             if pivotRow < A.m and A.values[pivotRow][col] == 0: # Short-circuit the operator
                 switchTo = A.m                
-                while A.values[A.m - 1][col] != 0 and pivotRow + 1 != switchTo:
+                while A.values[switchTo - 1][col] != 0 and pivotRow + 1 != switchTo:
                     A = A.rowSwitch(pivotRow + 1, switchTo)
                     switchTo -= 1
                     if logger:
