@@ -181,16 +181,19 @@ class Matrix():
         pivotRow = 0
         for col in range(A.n): # For every column
             if pivotRow < A.m and A.values[pivotRow][col] == 0: # Short-circuit the operator
-                if pivotRow + 1 != A.m: # Make sure we're not in the last row
-                    A = A.rowSwitch(pivotRow + 1, A.m) # Switch with the last row
+                switchTo = A.m                
+                while A.values[A.m - 1][col] != 0 and pivotRow + 1 != switchTo:
+                    A = A.rowSwitch(pivotRow + 1, switchTo)
+                    switchTo -= 1
                     if logger:
                         print(A)
-            for lowerRow in range(pivotRow + 1, A.m):
-                weight = -1 * A.values[lowerRow][col] * Fraction(1, A.values[pivotRow][col])
-                A = A.rowAdd(lowerRow + 1, pivotRow + 1, weight)
-                if logger:
-                    print(A)
-            pivotRow += 1
+            if pivotRow < A.m and A.values[pivotRow][col] != 0:
+                for lowerRow in range(pivotRow + 1, A.m):
+                    weight = -1 * A.values[lowerRow][col] * Fraction(1, A.values[pivotRow][col])
+                    A = A.rowAdd(lowerRow + 1, pivotRow + 1, weight)
+                    if logger:
+                        print(A)
+                pivotRow += 1
         return A
     
     def rref(self, logger=False):
