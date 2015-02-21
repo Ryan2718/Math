@@ -6,13 +6,6 @@ import math.ComplexNumber;
 import math.Fraction;
 
 /* TODO:
- * Elementary matrix for rowSwitch
- * Elementary matrix for rowMultiply
- * Elementary matrix for rowAdd
- * transpose
- * determinant
- * submatrix
- * 
  * basis for the range (pivot columns)
  * basis for the co-range (range of the transpose)
  * 
@@ -569,6 +562,104 @@ public class Matrix {
 	/** Prints our the matrix. */
 	public void print() {
 		System.out.println(toString());
+	}
+	
+	/** Finds the elementary matrix for switching two rows.
+	 * @param row1 One of the rows
+	 * @param row2 The other row
+	 * @param m The number of rows in A
+	 * @return The elementary matrix such that multiplying it by A will be the
+	 * same as switching the two specified rows of A.
+	 */
+	public static Matrix rowSwitchE(int row1, int row2, int m) {
+		return identity(m).rowSwitch(row1, row2);
+	}
+	
+	/** Finds the elementary matrix for scaling a row.
+	 * @param row The row to be scaled
+	 * @param weight The weight
+	 * @param m The number of rows in A
+	 * @return The elementary matrix such that multiplying it by A will be the
+	 * same as scaling the specified row of A by the given weight.
+	 */
+	public static Matrix rowMultiplyE(int row, ComplexNumber weight, int m) {
+		return identity(m).rowMultiply(row, weight);
+	}
+	
+	/** Finds the elementary matrix for adding a multiple of one row to
+	 * another.
+	 * @param row1 The row being added to
+	 * @param row2 The other row
+	 * @param weight The weight of the other row
+	 * @param m The number of rows in A
+	 * @return The elementary matrix such that multiplying it by A will be the
+	 * same as adding a multiple of row2 of A weighted by weight to row1 of A.
+	 */
+	public static Matrix rowAddE(int row1, int row2, ComplexNumber weight, 
+								 int m) {
+		return identity(m).rowAdd(row1, row2, weight);
+	}
+	
+	/** Finds the transpose of the current matrix.
+	 * @return The transpose
+	 */
+	public Matrix transpose() {
+		Matrix a = copy();
+		ComplexNumber[][] values = new ComplexNumber[a.M][];
+		for (int col = 0; col < a.N; col++) {
+			values[col] = new ComplexNumber[a.N];
+			for (int row = 0; row < a.M; row++) {
+				values[col][row] = a.ROWS[row][col]; 	
+			}
+		}
+		return new Matrix(values);
+	}
+	
+	/** Finds the determinant of the matrix.
+	 * @return The determinant
+	 */
+	public ComplexNumber determinant() {
+		// See Lay's textbook (p.165)
+		if (M != N) {
+			throw new RuntimeException("Non-Square Matrix!");
+		} else if (N == 1) {
+			return ROWS[0][0];
+		} else {
+			ComplexNumber det = new ComplexNumber(0);
+			for (int j = 1; j <= N; j++) {
+				ComplexNumber w1 = new ComplexNumber((int) Math.pow(-1, 1 + j));
+				ComplexNumber w2 = ROWS[0][j - 1]; // Account for zero-indexing
+				ComplexNumber w3 = subMatrix(0, j - 1).determinant();
+				ComplexNumber term = w1.multiply(w2).multiply(w3);
+				det = det.add(term);
+			}
+			return det;
+		}
+	}
+	
+	/** Creates a sub-matrix by removing a row and column of the current
+	 * matrix.
+	 * @param rowRemoved The row to be removed.
+	 * @param colRemoved The column to be removed.
+	 * @return The sub-matrix
+	 */
+	public Matrix subMatrix(int rowRemoved, int colRemoved) {
+		ComplexNumber[][] values = new ComplexNumber[M - 1][];
+		int newRow = 0;
+		for (int row = 0; row < M; row++) {
+			if (row != rowRemoved) {
+				values[newRow] = new ComplexNumber[N - 1];
+				int newCol = 0;
+				for (int col = 0; col < N; col++) {
+					if (col != colRemoved) {
+						values[newRow][newCol] = ROWS[row][col];
+						newCol++;
+					}
+				}
+				newRow++;
+			}
+		}
+		return new Matrix(values);
 	}
 	
 }
