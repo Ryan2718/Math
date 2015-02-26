@@ -11,7 +11,7 @@ public class MathMethods {
 	 * @param b The second number
 	 * @return The greatest common divisors of the numbers
 	 */
-	public static int gcd(int a, int b) {
+	public static long gcd(long a, long b) {
 		/* See Wikipedia page "Greatest Common Divisor" - 
 		 * "Using Euclid's Algorithm"
 		 */
