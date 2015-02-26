@@ -6,24 +6,24 @@ package math;
 public class Fraction {
 	
 	/** The numerator of the fraction. */
-	private final int NUMERATOR;
+	private final long NUMERATOR;
 	
 	/** The denominator of the fraction. */
-	private final int DENOMINATOR;
+	private final long DENOMINATOR;
 	
 	/** Constructor for a fraction. 
 	 * Fraction objects are stored in simplified form.
 	 * @param numerator The numerator
 	 * @param denominator The denominator
 	 */
-	public Fraction(int numerator, int denominator) {
+	public Fraction(long numerator, long denominator) {
 		if (denominator == 0) {
 			throw new RuntimeException("Zero Denominator!");
 		}
 		
 		int sign = 1;
-		int a = numerator;
-		int b = denominator;
+		long a = numerator;
+		long b = denominator;
 		
 		if (numerator < 0) {
 			sign *= -1;
@@ -35,7 +35,7 @@ public class Fraction {
 		}
 		
 		if (a != 0) {
-			int gcd = MathMethods.gcd(a, b);
+			long gcd = MathMethods.gcd(a, b);
 
 			a /= gcd;
 			b /= gcd;
@@ -63,10 +63,10 @@ public class Fraction {
 	 */
 	public Fraction add(Fraction f) {
 		// a/b + c/d = (ad + bc)/(bd)
-		int a = NUMERATOR;
-		int b = DENOMINATOR;
-		int c = f.NUMERATOR;
-		int d = f.DENOMINATOR;
+		long a = NUMERATOR;
+		long b = DENOMINATOR;
+		long c = f.NUMERATOR;
+		long d = f.DENOMINATOR;
 		
 		return new Fraction(a * d + b * c, b * d);
 	}
@@ -77,10 +77,10 @@ public class Fraction {
 	 */
 	public Fraction multiply(Fraction f) {
 		// a/b * c/d = (ac)/(bd)
-		int a = NUMERATOR;
-		int b = DENOMINATOR;
-		int c = f.NUMERATOR;
-		int d = f.DENOMINATOR;
+		long a = NUMERATOR;
+		long b = DENOMINATOR;
+		long c = f.NUMERATOR;
+		long d = f.DENOMINATOR;
 		
 		return new Fraction(a * c, b * d);
 	}
@@ -91,10 +91,10 @@ public class Fraction {
 	 */
 	public Fraction subtract(Fraction f) {
 		// a/b - c/d = (ad - bc)/(bd)
-		int a = NUMERATOR;
-		int b = DENOMINATOR;
-		int c = f.NUMERATOR;
-		int d = f.DENOMINATOR;
+		long a = NUMERATOR;
+		long b = DENOMINATOR;
+		long c = f.NUMERATOR;
+		long d = f.DENOMINATOR;
 		
 		return new Fraction(a * d - b * c, b * d);
 	}
@@ -105,10 +105,10 @@ public class Fraction {
 	 */
 	public Fraction divide(Fraction f) {
 		// (a/b) / (c/d) = (a/b)(d/c) = (ad)/(bc)
-		int a = NUMERATOR;
-		int b = DENOMINATOR;
-		int c = f.NUMERATOR;
-		int d = f.DENOMINATOR;
+		long a = NUMERATOR;
+		long b = DENOMINATOR;
+		long c = f.NUMERATOR;
+		long d = f.DENOMINATOR;
 		
 		return new Fraction(a * d, b * c);
 	}
