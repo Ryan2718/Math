@@ -605,9 +605,9 @@ public class Matrix {
 	 */
 	public Matrix transpose() {
 		Matrix a = copy();
-		ComplexNumber[][] values = new ComplexNumber[a.M][];
+		ComplexNumber[][] values = new ComplexNumber[a.N][];
 		for (int col = 0; col < a.N; col++) {
-			values[col] = new ComplexNumber[a.N];
+			values[col] = new ComplexNumber[a.M];
 			for (int row = 0; row < a.M; row++) {
 				values[col][row] = a.ROWS[row][col]; 	
 			}
