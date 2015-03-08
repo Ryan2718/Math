@@ -81,7 +81,7 @@ public class Matrix {
 		ROWS = complexRows;
 		M = complexRows.length;
 		N = complexRows[0].length;
-		for (int row = 0; row < N; row++) {
+		for (int row = 0; row < M; row++) {
 			if (complexRows[row].length != N) {
 				throw new RuntimeException("Non-Rectangular Matrix!");
 			}
