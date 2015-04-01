@@ -40,6 +40,32 @@ testAdd03 =
         b = Matrix [[1, 2, 3], [4, 5, 6]] 2 3
     in add a b == Nothing
 
+testMultiply01 =
+    let a = Matrix [[1, 2], [3, 4]] 2 2
+        b = Matrix [[5, 6], [7, 8]] 2 2
+    in multiply a b == Just (Matrix [[19, 22], [43,50]] 2 2)
+    
+testMultiply02 =
+    let a = Matrix [[1, 2], [3, 4]] 2 2
+        b = Matrix [[5, 6, 7], [8, 9, 10]] 2 3
+    in multiply a b == Just (Matrix [[21, 24, 27], [47, 54, 61]] 2 3)
+    
+testMultiply03 =
+    let a = Matrix [[1, 2], [3, 4], [5,6]] 3 2
+        b = Matrix [[7, 8], [9, 10]] 2 2
+    in multiply a b == Just (Matrix [[25,28], [57,64], [89, 100]] 3 2)
+    
+testMultiply04 =
+    let a = Matrix [[1, 2], [3, 4], [5,6], [7,8]] 4 2
+        b = Matrix [[9, 10, 11], [12, 13, 14]] 2 3
+    in multiply a b == Just (Matrix [[33, 36, 39], [75, 82, 89],
+                        [117, 128, 139], [159, 174, 189]] 4 3)
+    
+testMultiply05 =
+    let a = Matrix [[1, 2], [3, 4]] 2 2
+        b = Matrix [[5, 6]] 1 2
+    in multiply a b == Nothing
+
 main = do
          if testShow01 then return () else putStrLn "Failed testShow01"
          if testShow02 then return () else putStrLn "Failed testShow02"
@@ -51,3 +77,8 @@ main = do
          if testAdd01 then return () else putStrLn "Failed testAdd01"
          if testAdd02 then return () else putStrLn "Failed testAdd02"
          if testAdd03 then return () else putStrLn "Failed testAdd03"
+         if testMultiply01 then return () else putStrLn "Failed testMultiply01"
+         if testMultiply02 then return () else putStrLn "Failed testMultiply02"
+         if testMultiply03 then return () else putStrLn "Failed testMultiply03"
+         if testMultiply04 then return () else putStrLn "Failed testMultiply04"
+         if testMultiply05 then return () else putStrLn "Failed testMultiply05"
