@@ -35,6 +35,9 @@ multiply (Matrix entries1 m' n') (Matrix entries2 m'' n'') =
     then let rows = entries1
              cols = transpose entries2
              productRow row = map (foldl (+) 0) $ zipWith (zipWith (*)) (replicate n'' row) cols
+             -- Given a row in A, get a row of the product matrix AB
+             -- A row of AB will be the dot products of a row of A with each column of B
+             -- Notice that A and AB have the same number of rows
           in let productEntries = map (productRow) rows
              in Just $ Matrix productEntries m' n''
     else Nothing
