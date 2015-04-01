@@ -27,3 +27,15 @@ add (Matrix entries1 m' n') (Matrix entries2 m'' n'') =
     then let newEntries = zipWith (zipWith (+)) entries1 entries2 in
              Just $ Matrix newEntries m' n'
     else Nothing
+    
+-- Multiply two matrices
+multiply :: (Num a) => Matrix a -> Matrix a -> Maybe (Matrix a)
+multiply (Matrix entries1 m' n') (Matrix entries2 m'' n'') =
+    if (n' == m'') -- In AB, the number of rows in A == the number of columns in B
+    then let rows = entries1
+             cols = transpose entries2
+             productRow row = map (foldl (+) 0) $ zipWith (zipWith (*)) (replicate n'' row) cols
+          in let productEntries = map (productRow) rows
+             in Just $ Matrix productEntries m' n''
+    else Nothing
+    
