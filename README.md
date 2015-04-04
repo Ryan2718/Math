@@ -91,9 +91,9 @@ Languages I feel most comfortable writing code in (i.e. what I would write a lar
 
 Languages I most enjoy writing code in (i.e. what I like experimenting with):
 
-1. Python (Executable pseudo-code, multi-paradigm)
-2. Ruby (I rarely write Ruby code, but it's so similar to Python code...)
-3. Haskell (Functional programming is really cool)
-4. Common Lisp (Multi-paradigm, its use in AI)
+1. Haskell (Functional programming is really cool)
+2. Common Lisp (Multi-paradigm, its use in AI)
+3. Python (Executable pseudo-code, multi-paradigm)
+4. Ruby (I rarely write Ruby code, but it's so similar to Python code...)
 5. Java
 6. C
