@@ -78,9 +78,10 @@ Positives
 Negatives
   * Needing to put `end` after if-statements and loops
 
-## My Favorites?
+## My Favorites
 
 Languages I feel most comfortable writing code in (i.e. what I would write a large project in):
+
 1. Java
 2. Python
 3. Ruby
@@ -89,6 +90,7 @@ Languages I feel most comfortable writing code in (i.e. what I would write a lar
 6. Common Lisp
 
 Languages I most enjoy writing code in (i.e. what I like experimenting with):
+
 1. Python (Executable pseudo-code, multi-paradigm)
 2. Ruby (I rarely write Ruby code, but it's so similar to Python code...)
 3. Haskell (Functional programming is really cool)
