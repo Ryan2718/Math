@@ -3,7 +3,7 @@ Ryan Forsyth
 
 Code representing a matrix, implemented in various languages.
 
-I think it's cool to compare doing the same task in different programming languages. Each language has its own advantages and disadvantages. In this repository, the common task is performing matrix operations.
+I think it's cool to compare doing the same task in different programming languages. Each language has its own advantages and disadvantages. In this repository, the common task is performing matrix operations. Below are some of the opinions I've developed after working with each language.
 
 ## C
 
